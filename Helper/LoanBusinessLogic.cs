@@ -17,6 +17,8 @@ namespace Project_EZLoan.Helper
 			// Push Payments into the loan
 
 			// Return the loan
+
+
 			return loanInfo;
 		}
 
