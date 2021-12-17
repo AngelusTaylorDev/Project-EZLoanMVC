@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project_EZLoan.Helper;
 using Project_EZLoan.Models;
 using System;
 using System.Collections.Generic;
@@ -28,32 +29,33 @@ namespace Project_EZLoan.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult App()
         {
             // Creating a new loan object instance
-            LoanInfo loan = new();
+            LoanInfo loanInfo = new();
 
             // Set the loan info
-            loan.Payment = 0.0m;
-            loan.TotalInterest = 0.0m;
-            loan.TotalCost = 0.0m;
-            loan.InterestRate = 3.5m;
-            loan.LoanAmount = 15000m;
-            loan.TermAmount = 60;
+            loanInfo.Payment = 0.0m;
+            loanInfo.TotalInterest = 0.0m;
+            loanInfo.TotalCost = 0.0m;
+            loanInfo.InterestRate = 3.5m;
+            loanInfo.LoanAmount = 15000m;
+            loanInfo.TermAmount = 60;
 
             // Returning to the view
-            return View(loan);
+            return View(loanInfo);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult App(LoanInfo loanInfo)
         {
-            // Calculate the loan
+            // Calculate the loan and get the payments
+            var loanBusinessLogic = new LoanBusinessLogic();
 
+            LoanInfo newLoan = loanBusinessLogic.GetPayments(loanInfo);
 
-            return View(loanInfo);
+            return View(newLoan);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
