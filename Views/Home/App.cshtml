@@ -1,0 +1,104 @@
+﻿@model Project_EZLoan.Models.LoanInfo
+
+@{
+    ViewData["Title"] = "App";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main Body Section -->
+<main class="flex-shrink-0 mt-5">
+	<div class="container col-xxl-8 fa-border">
+		<div class="row g-5 pt-4 row-cols-1 row-cols-lg-2">
+
+			<!-- User Input -->
+			<div class="col-lg-4 form-row p-4 fBorder">
+				<form class="inputForm">
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="loan-amount" class="col-sm-8 col-form-label">Loan Amount</label>
+						</div>
+						<div class="col-sm-6">
+							<input type="number" class="form-control inputBoxes" id="loan-amount" placeholder="0">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="term-amount" class="col-sm-8 col-form-label">Term (Months)</label>
+						</div>
+						<div class="col-sm-6">
+							<input type="number" class="form-control inputBoxes" id="term-amount" placeholder="0">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="interest-rate" class="col-sm-8 col-form-label">Interest Rate</label>
+						</div>
+						<div class="col-sm-6">
+							<input type="number" class="form-control inputBoxes" id="interest-rate" placeholder="0">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="calculate" class="col-sm-8 col-form-label"></label>
+						</div>
+						<div class="col-sm-6">
+							<button id="btn-submit" class="btn btn-outline-dark btn-lg px-4 me-md-2"
+								type="button">Calculate</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<!-- Results -->
+			<div class="col-lg-8">
+				<div>
+					<h1 class="text-center">Your monthly Payments</h1>
+					<h1>
+						<!-- Ammount Goes here -->
+					</h1>
+					<table class="table">
+						<tr>
+							<th scope="col">Total Principal</th>
+						</tr>
+						<tr>
+							<th scope="col">Total Intrest</th>
+						</tr>
+						<tr>
+							<th scope="col">Total Cost</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="col-lg-12 p-0 mb-3">
+				<!-- Payment plan timeline -->
+				<div class="pt-4 row-cols-1 row-cols-lg-2">
+					<table class="table">
+						<thead class="thead-style">
+							<tr>
+								<th scope="col">Month</th>
+								<th scope="col">Payment</th>
+								<th scope="col">Principal</th>
+								<th scope="col">Intrest</th>
+								<th scope="col">Balance</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+<!-- HTML Template Section -->
+<template id="fbTemplate">
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</template>
