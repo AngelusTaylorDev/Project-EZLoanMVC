@@ -28,6 +28,7 @@ namespace Project_EZLoan.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult App()
         {
             // Creating a new loan object instance
@@ -43,6 +44,16 @@ namespace Project_EZLoan.Controllers
 
             // Returning to the view
             return View(loan);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult App(LoanInfo loanInfo)
+        {
+            // Calculate the loan
+
+
+            return View(loanInfo);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
