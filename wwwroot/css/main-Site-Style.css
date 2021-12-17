@@ -161,6 +161,10 @@ main > .container {
     font-size: 1em;
 }
 
+#monthlyPayments {
+    font-size: 2.5em;
+    font-weight: 800;
+}
 
 /* Prism custom JS */
 code[class*="language-"],

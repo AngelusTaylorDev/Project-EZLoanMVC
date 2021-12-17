@@ -1,4 +1,6 @@
-﻿namespace Project_EZLoan.Models
+﻿using System.Collections.Generic;
+
+namespace Project_EZLoan.Models
 {
     public class LoanInfo
     {
@@ -9,5 +11,6 @@
         public decimal Payment { get; set; }
         public decimal TotalInterest { get; set; }
         public decimal TotalCost { get; set; }
+        public List<LoanPayment> LoanPayments { get; set; } = new List<LoanPayment>();
     }
 }

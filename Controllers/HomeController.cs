@@ -22,14 +22,27 @@ namespace Project_EZLoan.Controllers
         {
             return View();
         }
-        public IActionResult App()
-        {
-            return View();
-        }
 
         public IActionResult TheCode()
         {
             return View();
+        }
+
+        public IActionResult App()
+        {
+            // Creating a new loan object instance
+            LoanInfo loan = new();
+
+            // Set the loan info
+            loan.Payment = 0.0m;
+            loan.TotalInterest = 0.0m;
+            loan.TotalCost = 0.0m;
+            loan.InterestRate = 3.5m;
+            loan.LoanAmount = 15000m;
+            loan.TermAmount = 60;
+
+            // Returning to the view
+            return View(loan);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

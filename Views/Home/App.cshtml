@@ -12,13 +12,13 @@
 
 			<!-- User Input -->
 			<div class="col-lg-4 form-row p-4 fBorder">
-				<form class="inputForm">
+				<form asp-controller="Home" asp-action="App" method="post" class="inputForm">
 					<div class="form-group row">
 						<div class="col-sm-6">
 							<label for="loan-amount" class="col-sm-8 col-form-label">Loan Amount</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" class="form-control inputBoxes" id="loan-amount" placeholder="0">
+							<input type="number" value="@Model.LoanAmount" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -26,7 +26,7 @@
 							<label for="term-amount" class="col-sm-8 col-form-label">Term (Months)</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" class="form-control inputBoxes" id="term-amount" placeholder="0">
+							<input type="number" value="@Model.TermAmount" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -34,7 +34,7 @@
 							<label for="interest-rate" class="col-sm-8 col-form-label">Interest Rate</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" class="form-control inputBoxes" id="interest-rate" placeholder="0">
+							<input type="number" value="@Model.InterestRate" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -42,8 +42,7 @@
 							<label for="calculate" class="col-sm-8 col-form-label"></label>
 						</div>
 						<div class="col-sm-6">
-							<button id="btn-submit" class="btn btn-outline-dark btn-lg px-4 me-md-2"
-								type="button">Calculate</button>
+							<button id="btn-submit" class="btn btn-outline-dark btn-lg px-4 me-md-2" type="button">Calculate</button>
 						</div>
 					</div>
 				</form>
@@ -53,46 +52,74 @@
 			<div class="col-lg-8">
 				<div>
 					<h1 class="text-center">Your monthly Payments</h1>
-					<h1>
-						<!-- Ammount Goes here -->
-					</h1>
+					<p class="text-center" id="monthlyPayments">
+						@Model.Payment.ToString("C")
+					</p>
 					<table class="table">
 						<tr>
 							<th scope="col">Total Principal</th>
+							<th>
+								@Model.LoanAmount.ToString("C")
+							</th>
 						</tr>
 						<tr>
 							<th scope="col">Total Intrest</th>
+							<th>
+								@Model.TotalInterest.ToString("C")
+							</th>
 						</tr>
 						<tr>
 							<th scope="col">Total Cost</th>
+							<th>
+								@Model.TotalCost.ToString("C")
+							</th>
 						</tr>
 					</table>
 				</div>
 			</div>
 
-			<div class="col-lg-12 p-0 mb-3">
-				<!-- Payment plan timeline -->
-				<div class="pt-4 row-cols-1 row-cols-lg-2">
-					<table class="table">
-						<thead class="thead-style">
-							<tr>
-								<th scope="col">Month</th>
-								<th scope="col">Payment</th>
-								<th scope="col">Principal</th>
-								<th scope="col">Intrest</th>
-								<th scope="col">Balance</th>
-							</tr>
-						</thead>
-					</table>
+			<!-- Payment Schedules -->
+			@if (Model.LoanPayments.Count > 0)
+		   {
+			   <!-- Payment plan timeline -->
+			   <div class="col-lg-12 p-0 mb-3">
+					<div class="pt-4 row-cols-1 row-cols-lg-2">
+						<table class="table table-hover">
+							<thead class="thead-style">
+								<tr>
+									<th scope="col">Month</th>
+									<th scope="col">Payment</th>
+									<th scope="col">Principal</th>
+									<th scope="col">Intrest</th>
+									<th scope="col">Balance</th>
+								</tr>
+							</thead>
+
+							<!-- Looping through the LoanPayments list, by using a temple -->
+							<tbody>
+								@foreach (var item in Model.LoanPayments)
+							   {
+								   <tr>
+									   <th>@item.Month</th>
+									   <th>@item.CalculatedPayment</th>
+									   <th>@item.MonthlyPrincipal</th>
+									   <th>@item.MonthlyInterest</th>
+									   <th>@item.Ballance</th>
+								   </tr>
+							   }
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+		   }
+
 		</div>
 	</div>
 </main>
 
 
 <!-- HTML Template Section -->
-<template id="fbTemplate">
+@*<table id="fbTemplate">
 	<tr>
 		<td></td>
 		<td></td>
@@ -101,4 +128,4 @@
 		<td></td>
 		<td></td>
 	</tr>
-</template>
+</table>*@
