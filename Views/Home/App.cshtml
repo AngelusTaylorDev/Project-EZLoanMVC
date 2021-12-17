@@ -18,7 +18,7 @@
 							<label for="loan-amount" class="col-sm-8 col-form-label">Loan Amount</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" value="@Model.LoanAmount" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
+							<input asp-for="LoanAmount" type="number" value="@Model.LoanAmount" class="form-control inputBoxes" min="1" step=".1">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -26,7 +26,7 @@
 							<label for="term-amount" class="col-sm-8 col-form-label">Term (Months)</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" value="@Model.TermAmount" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
+							<input asp-for="TermAmount" type="number" value="@Model.TermAmount" class="form-control inputBoxes" min="1" step=".1">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -34,7 +34,7 @@
 							<label for="interest-rate" class="col-sm-8 col-form-label">Interest Rate</label>
 						</div>
 						<div class="col-sm-6">
-							<input type="number" value="@Model.InterestRate" class="form-control inputBoxes" min="1" step=".1" placeholder="0">
+							<input asp-for="InterestRate" type="number" value="@Model.InterestRate" class="form-control inputBoxes" min="1" step=".1">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -42,7 +42,7 @@
 							<label for="calculate" class="col-sm-8 col-form-label"></label>
 						</div>
 						<div class="col-sm-6">
-							<button id="btn-submit" class="btn btn-outline-dark btn-lg px-4 me-md-2" type="button">Calculate</button>
+							<button id="btn-submit" class="btn btn-outline-dark btn-lg px-4 me-md-2" type="submit">Calculate</button>
 						</div>
 					</div>
 				</form>
@@ -101,10 +101,10 @@
 							   {
 								   <tr>
 									   <th>@item.Month</th>
-									   <th>@item.CalculatedPayment</th>
-									   <th>@item.MonthlyPrincipal</th>
-									   <th>@item.MonthlyInterest</th>
-									   <th>@item.Ballance</th>
+									   <th>@item.CalculatedPayment.ToString("C")</th>
+									   <th>@item.MonthlyPrincipal.ToString("C")</th>
+									   <th>@item.MonthlyInterestRate.ToString("C")</th>
+									   <th>@item.Ballance.ToString("C")</th>
 								   </tr>
 							   }
 							</tbody>
